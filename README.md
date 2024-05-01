@@ -1,7 +1,9 @@
 # The Cool Dictionary 
 
-AS A USER, I want to know the meaning of a word, as it's synonym and antonym. 
+AS A USER, I want to know the meaning of a word, as it's synonym and antonym.
 
+When I...
+Then...
 
 
 
