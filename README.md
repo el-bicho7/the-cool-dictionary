@@ -10,7 +10,7 @@ I will see a "SEARCH" button where I can CLICK once I have typed the word.
 If the word is not valid I will see a "CAUTION to correct or change the word and [I may see a "similar" word with the message "Did you mean "this"?]
 If the word is accepted, I will see a "SEARCHING" message and then see the results for meaning, synonyms and antonyms.
 
-Translated with DeepL.com (free version)
+
 
 
 
