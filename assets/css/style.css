@@ -1,17 +1,18 @@
-* {
+*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
 
+}
 *:not(i){
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
-}
+    font-family: 'Gill Sans', 'Gill Sans MT', sans-serif;
 
-body {
-    background-color: darkblue;   
+
 }
-.container{
+body{
+    background-color: lightgrey;
+}
+.container {
     background-color: snow;
     width: 90vmin;
     position: absolute;
@@ -26,7 +27,7 @@ body {
     display: flex;
     justify-content: space-between;
 }
-.search-box input {
+.search-box input{
     padding: 5px;
     width: 70%;
     border: none;
@@ -34,7 +35,7 @@ body {
     border-bottom: 3px solid midnightblue;
     font-size: 16px;
 }
-.search-box button {
+.search-box button{
     padding: 15px 0;
     width: 25%;
     background-color: midnightblue;
@@ -42,4 +43,42 @@ body {
     outline: none;
     color: snow;
     border-radius: 5px;
+
+}
+.result{
+    position: relative;
+}
+.result .word{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+}
+.result button{
+    background-color: transparent;
+    color: midnightblue;
+    border: none;
+    font-size: 20px;
+}
+.result .details{
+    display: flex;
+    gap: 10px;
+    color: royalblue;
+    margin: 5px 0 20px 0;
+    font-size: 16px;
+}
+.word-meaning{
+    color: midnightblue;
+}
+.word-example{
+    color: midnightblue;
+    font-style: italic;
+    border-left: 5px solid royalblue;
+    padding-left: 20px;
+    margin-top: 30px;
+
+}
+.error{
+    margin-top: 80px;
+    text-align: center;
+    color: midnightblue;
 }
