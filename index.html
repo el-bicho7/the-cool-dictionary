@@ -1,48 +1,62 @@
+<!-- This is the main HTML file for the Cool Dictionary project. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cool Dictionary</title>
+    <!-- Include Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Include custom CSS -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
 <body>
+    <!-- Audio element for playing sound -->
     <audio id="sound"></audio>
     <div class="container">
         <h1>Welcome to Cool Dictionary</h1>
         
         <div class="search-box">
             <form>
-                <input type="text" placeholder="Type the word here..."id="inp-word">
+                <!-- Input field for entering the word -->
+                <input type="text" placeholder="Type the word here..." id="inp-word">
                 <br>
                 <br>
+                <!-- Button for initiating the search -->
                 <button id="srchBtn" type="button">
                     <i class="fas fa-search"></i> Search
                 </button>
-
             </form>
         </div> 
         
+        <!-- Container for displaying the search result -->
         <div class="result" id="result"></div>
     </div>
 
+    <!-- Modal for displaying word details -->
     <div id="myModal" class="modal">
         <div class="modal-content">
+            <!-- Close button for closing the modal -->
             <span class="close">&times;</span>
+            <!-- Heading for displaying the word -->
             <h1>Word: <span id="modal-word"></span></h1>
+            <!-- Button for playing the pronunciation -->
             <button aria-label="Play pronunciation" aria-controls="sound">
                 <i class="fas fa-volume-up"></i> Play Pronunciation
             </button>
 
             <section id="modal-details">
                 <dl>
+                    <!-- Definition of the word -->
                     <dt>Meaning:</dt>
                     <dd id="modal-meaning">A brief explanation of the word.</dd>
+                    <!-- Synonyms of the word -->
                     <dt>Synonyms:</dt>
                     <dd id="modal-synonyms">Synonym 1, Synonym 2, Synonym 3</dd>
+                    <!-- Antonyms of the word -->
                     <dt>Antonyms:</dt>
                     <dd id="modal-antonyms">Antonym 1, Antonym 2, Antonym 3</dd>
+                    <!-- Translation of the word -->
                     <dt>Translation:</dt>
                     <dd id="modal-translation">Spanish Translation of the word.</dd>
                 </dl>
@@ -50,7 +64,9 @@
         </div>
     </div>
 
+    <!-- Include jQuery library -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Include custom JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
