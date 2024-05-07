@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link src="./assets/css/style.css" rel="stylesheet">
-  <title>The Cool Dictionary</title>
-  <style>
-    /* Add your CSS styles here */
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <title>Cool Dictionary</title>
+
 </head>
+    <body>
+         <audio id="sound"></audio>
+         <div class="container">
+             <div class="search-box">
+                <input 
+                    type="text" 
+                    placeholder="Type the word here ..." 
+                    id="inp-word"
+                />
+                <button id="srchBtn" type="button">Search</button>
+                
+            </div>    
+            <div class="result" id="result"></div>    
+        </div>
 
-<body>
-  <h1>The Cool Dictionary</h1>
-  <input type="text" id="search-input" name="search-input" placeholder="Search word...">
-  <button id="search-button">Search</button>
-  <button id="clear-button">Clear</button>
-  <div id="results">
-    <h2>Word looked for:</h2>
-    <p id="word"></p>
-
-    <h2>Definitions</h2>
-    <p id="definitions"></p>
-
-    <h2>Examples</h2>
-    <p id="example"></p>
-
-    <h2>Synonyms</h2>
-    <p id="synonyms"></p>
-
-    <h2>Antonyms</h2>
-    <p id="antonyms"></p>
-
-    <h2>Transalation to Spanish:</h3>
-      <p id="translation"></p>
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="./assets/js/script.js"></script>
-</body>
-
+        <script src="script.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    </body>
 </html>
+
+
+ 
+ 
