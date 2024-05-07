@@ -1,84 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link src="./assets/css/style.css" rel="stylesheet">
   <title>The Cool Dictionary</title>
   <style>
     /* Add your CSS styles here */
   </style>
 </head>
+
 <body>
   <h1>The Cool Dictionary</h1>
-  <input type="text" id="searchInput" placeholder="Search word...">
-  <button id="searchButton">Search</button>
-
+  <input type="text" id="search-input" name="search-input" placeholder="Search word...">
+  <button id="search-button">Search</button>
+  <button id="clear-button">Clear</button>
   <div id="results">
     <h2>Word looked for:</h2>
     <p id="word"></p>
 
-    <h2>Definitions and Examples</h2>
+    <h2>Definitions</h2>
     <p id="definitions"></p>
 
-    <h2>Synonyms and Antonyms</h2>
+    <h2>Examples</h2>
+    <p id="example"></p>
+
+    <h2>Synonyms</h2>
     <p id="synonyms"></p>
+
+    <h2>Antonyms</h2>
     <p id="antonyms"></p>
+
+    <h2>Transalation to Spanish:</h3>
+      <p id="translation"></p>
   </div>
 
-  <script>
-    const searchInput = document.getElementById('searchInput');
-    const searchButton = document.getElementById('searchButton');
-    const results = document.getElementById('results');
-
-    searchButton.addEventListener('click', async () => {
-      const word = searchInput.value.trim();
-      if (!word) {
-        alert('Please enter a word to search for.');
-        return;
-      }
-
-      // Simulate API call to fetch word data
-      const response = await fetch(`https://dictionary-api.dev/api/v2/entries/en/${word}`);
-      const data = await response.json();
-
-      // Handle successful and failed lookups
-      if (data.length > 0) {
-        const wordData = data[0];
-        document.getElementById('word').textContent = wordData.word;
-
-        // Process definitions
-        let definitions = '';
-        wordData.meanings.forEach(meaning => {
-          definitions += `<b>${meaning.partOfSpeech}</b>: ${meaning.definitions[0].definition}`;
-          if (meaning.definitions[0].example) {
-            definitions += ` (e.g. "${meaning.definitions[0].example}")`;
-          }
-          definitions += '<br>';
-        });
-        document.getElementById('definitions').innerHTML = definitions;
-
-        // Process synonyms and antonyms (if available)
-        let synonyms = '';
-        if (wordData.synonyms && wordData.synonyms.length > 0) {
-          synonyms = `Synonyms: ${wordData.synonyms.join(', ')}<br>`;
-        }
-        document.getElementById('synonyms').innerHTML = synonyms;
-
-        let antonyms = '';
-        if (wordData.antonyms && wordData.antonyms.length > 0) {
-          antonyms = `Antonyms: ${wordData.antonyms.join(', ')}`;
-        }
-        document.getElementById('antonyms').innerHTML = antonyms;
-
-        results.style.display = 'block';
-      } else {
-        results.style.display = 'block';
-        document.getElementById('word').textContent = word;
-        document.getElementById('definitions').textContent = 'No definitions found.';
-        document.getElementById('synonyms').textContent = '';
-        document.getElementById('antonyms').textContent = '';
-      }
-    });
-  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
