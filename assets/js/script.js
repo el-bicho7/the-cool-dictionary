@@ -1,7 +1,8 @@
 const acceptBtn = $('#srchBtn');
 const clearBtn = $('#clear-button');
 const result = $('#result');
-var modal = document.getElementById("myModal");
+const modal = document.getElementById("myModal");
+const closeButton = document.getElementsByClassName("close")[0];
 
 // This function will fetch the dictionary and get the meaning of the word
 function meaningDict(){
@@ -93,9 +94,6 @@ acceptBtn.on('click', function(){
   thesaurusW();
   meaningDict();
 });
-
-
-var closeButton = document.getElementsByClassName("close")[0];
 
 closeButton.addEventListener("click", function() {
   modal.style.display = "none";
