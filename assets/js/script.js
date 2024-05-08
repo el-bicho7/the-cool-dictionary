@@ -1,111 +1,97 @@
-const acceptBtn = $('#search-button');
+const acceptBtn = $('#srchBtn');
 const clearBtn = $('#clear-button');
-const outputWord = $('#word');
+const result = $('#result');
+var modal = document.getElementById("myModal");
 
-function searchWord(){
-  const theWord = $('#search-input').val().trim();
-  const bilingualDict = 'https://www.dictionaryapi.com/api/v3/references/spanish/json/';
-  const key = '?key=a16e1bea-6077-4330-8322-a1574b70f085';
-  const fetchBi = bilingualDict + theWord + key;
+function meaningDict(){
+  const theWord = $('#inp-word').val().trim();
+  const url="https://api.dictionaryapi.dev/api/v2/entries/en/";
 
+  fetch(`${url}${theWord}`)
+    .then(response => response.json())
+    .then(data =>{
+      const meaning = $("<p>").append(data[0].meanings[0].definitions[0].definition);
+      $("#modal-meaning").append(meaning);
+    })
+    .catch(error => {
+      console.error("There was a problem with the Meaning operation", error)
+    })};
+
+
+// This function gets the word from the Webster Dictionary and returns the word in spanish
+function websterDictionary(){
+  const theWord = $('#inp-word').val().trim();
+  const spanishAPI = 'https://www.dictionaryapi.com/api/v3/references/spanish/json/';
+  const keySpanish = '?key=a16e1bea-6077-4330-8322-a1574b70f085';
+  const fetchBi = spanishAPI + theWord + keySpanish;
+  
   fetch(fetchBi)
     .then(response => response.json())
     .then(data => {
       for (let dat of data){
         // data.hwi.hw = word stored
         if (theWord === dat.hwi.hw){
-          // This gets the word in the dictionary and what type of word is it
-          const word = $("<p>").append(dat.hwi.hw + " - " + dat.fl);
-          $('#word').append(word);
+          
+          // This gets the word and the part of speech
+          const partOfSent = $("<p>").append(dat.hwi.hw + " - " + dat.fl);
+          $('#modal-word').append(partOfSent);
           // This gets the word in spanish
           const translate = $("<p>").append(dat.shortdef.join("\n"));
-          $('#translation').append(translate);
-}}})
+          $('#modal-translation').append(translate);
+          // This gets the example of the theWord
+          // const example = $("<p>").append(dat.def.sseq[0][0][1].dt[0][1].t);
+          // $('#modal-example').append(example);
+  }}})
     .catch(error => {
       console.error("There was a problem with the Dictionary operation", error)
-    })
-};
+    })};
 
+  // This function gets the synonym and antonyms of the searched word
 function thesaurusW(){
-  const theWord = $('#search-input').val().trim();
-  const thesaurusDict = 'https://dictionaryapi.com/api/v3/references/ithesaurus/json/'; //https://dictionaryapi.com/api/v3/references/ithesaurus/json/pretty?key=cb8330dc-8de9-452c-9c8e-ab72c53bd096
-  const key = '?key=cb8330dc-8de9-452c-9c8e-ab72c53bd096';
-  const thesaurus = thesaurusDict + theWord + key;
-  fetch(thesaurus)
-    .then(response => response.json())
-    .then(data => {
-      for (let dat of data){
-        if (theWord === dat.hwi.hw){
-          // This adds definitions
-          const def = $("<p>").append(dat.shortdef);
-          $('#definitions').append(def);
-          // This adds an example
-          const exam = $("<p>").append(dat.shortdef);
-          $('#example').append(exam);
-          // This adds the synonyms
-          const syn = $("<p>").append(dat.meta.syns[0].join(", "));
-          $('#synonyms').append(syn);
-          // This adds the antonyms
-          if (dat.meta.ants[0]){
-            const ant = $("<p>").append(dat.meta.ants[0].join(", "));
-            $('#antonyms').append(ant);
-          }}}})
-    .catch(error => {
-      console.error("There was a problem with the Thesaurus operation", error)
-    })
-}
+  const theWord = $('#inp-word').val().trim();
+  const thesAPI = 'https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/';
+  const keyThesaurus = '?key=cb8330dc-8de9-452c-9c8e-ab72c53bd096';
+  const thesaurus = thesAPI + theWord + keyThesaurus;
 
-function cleanScreen() {
-  $("#search-input").val("");
-  $('#word').empty();
-  $('#definitions').empty();
-  $('#synonyms').empty();
-  $('#antonyms').empty();
-  $('#translation').empty();
-}
+  fetch(thesaurus)
+  .then(response => response.json())
+  .then(responses => {
+    for (let response of responses){
+      if (theWord === response.hwi.hw){
+        // This adds the synonyms
+        const syn = $("<p>").append(response.meta.syns[0].join(", "));
+        $('#modal-synonyms').append(syn);
+        // This adds the antonyms
+        if (response.meta.ants.length > 0){
+          const ant = $("<p>").append(response.meta.ants[0].join(", "));
+          $('#modal-antonyms').append(ant);
+        } else {
+          const ant = $("<p>").append(response.hwi.hw + " as a " + response.fl + " doesn't have antonyms");
+          $('#modal-antonyms').append(ant);
+        }
+      }}})
+  .catch(error => {
+    console.error("There was a problem with the Thesaurus operation", error)
+  })};
 
 // Webster Dictionary Spanish-English dictionary
 acceptBtn.on('click', function(){
-  searchWord();
+  modal.style.display = 'block';
+  websterDictionary();
   thesaurusW();
+  meaningDict();
 });
 
-clearBtn.on('click', cleanScreen);
 
-const url="https://api.dictionaryapi.dev/api/v2/entries/en/";
-const result = document.getElementById("result");
-const sound = document.getElementById("sound");
-const srchBtn = document.getElementById("srchBtn");
+var closeButton = document.getElementsByClassName("close")[0];
 
-srchBtn.addEventListener("click", function(e){
-    let inpWord = document.getElementById("inp-word")
-    .value;
-    fetch(`${url}${inpWord}`)
-        .then((Response) => Response.json())
-        .then((data) => {
-            console.log(data);
-            result.innerHTML = `
-            <div class="word">
-                    <h3>${inpWord}</h3>
-                    <button>
-                        <i class="fa-solid fa-volume-high"></i>
-                    </button>
-                </div>
-                <div class="details">
-                    <p>${data[0].meanings[0].partOfSpeech}</p>
-                    <p>/${data[0].phonetic}/</p>
-                </div>
-                <p class="word-meaning">
-                    ${data[0].meanings[0].definitions[0].definition}
-                </p>
-                <p class="word-example">
-                    ${data[0].meanings[0].definitions[0].example || ""}
-                </p>`;
-
-            
-        })
-        .catch(() => {
-            result.innerHTML = `<h3 class="error">Couldn't Find The Word</h3>`;
-        });
-             
+closeButton.addEventListener("click", function() {
+  modal.style.display = "none";
+  $("#inp-word").val("");
+  $("#modal-word").val("");
+  $('#modal-meaning').empty();
+  $('#modal-example').empty();
+  $('#modal-synonyms').empty();
+  $('#modal-antonyms').empty();
+  $('#modal-transalation').empty();
 });
