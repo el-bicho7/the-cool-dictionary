@@ -3,10 +3,11 @@ const clearBtn = $('#clear-button');
 const result = $('#result');
 var modal = document.getElementById("myModal");
 
+// This function will fetch the dictionary and get the meaning of the word
 function meaningDict(){
   const theWord = $('#inp-word').val().trim();
   const url="https://api.dictionaryapi.dev/api/v2/entries/en/";
-
+  
   fetch(`${url}${theWord}`)
     .then(response => response.json())
     .then(data =>{
@@ -74,6 +75,17 @@ function thesaurusW(){
     console.error("There was a problem with the Thesaurus operation", error)
   })};
 
+
+function clearModal(){
+  $("#inp-word").val("");
+  $("#modal-word").empty();
+  $('#modal-meaning').empty();
+  $('#modal-example').empty();
+  $('#modal-synonyms').empty();
+  $('#modal-antonyms').empty();
+  $('#modal-transalation').empty()
+}
+
 // Webster Dictionary Spanish-English dictionary
 acceptBtn.on('click', function(){
   modal.style.display = 'block';
@@ -87,11 +99,5 @@ var closeButton = document.getElementsByClassName("close")[0];
 
 closeButton.addEventListener("click", function() {
   modal.style.display = "none";
-  $("#inp-word").val("");
-  $("#modal-word").val("");
-  $('#modal-meaning').empty();
-  $('#modal-example').empty();
-  $('#modal-synonyms').empty();
-  $('#modal-antonyms').empty();
-  $('#modal-transalation').empty();
+  clearModal();
 });
