@@ -68,7 +68,7 @@
 /* Additional styling for improved design */
 body {
     font-family: Arial, sans-serif;
-    background-color: lightgray;
+    background-color: rgb(216, 234, 251);
     margin: 0;
     padding: 0;
     display: flex;
@@ -108,7 +108,7 @@ input[type="text"] {
     border-radius: 5px;
     border: 1px solid midnightblue;
     font-size: 16px;   
-
+    
 }
 
 button {
@@ -119,12 +119,12 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    
+
 }
 
 button:hover {
     background-color: #06284a73;
-    
+
 }
 
 .modal {
@@ -165,4 +165,7 @@ button:hover {
     cursor: pointer;
 
 }
+
+
+
 
