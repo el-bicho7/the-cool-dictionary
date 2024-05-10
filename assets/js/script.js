@@ -120,7 +120,6 @@ function clearModal(){
 
 // FCB adding two functions
 // FCB renderTags appends tags elements in the div of the HTML
-
 function renderTags() {
   const theTags = $('#listofTags');
   theTags.empty();
