@@ -11,6 +11,7 @@ const tagButton = $('#listofTags');
 
 // This function will fetch the dictionary and get the meaning of the word
 function meaningDict(theWord){
+  console.log(theWord);
   // FCB the var theWord now is a parameter and the next line is not necesary 
   // const theWord = $('#inp-word').val().trim();
   const user_id = '12544';
@@ -171,7 +172,7 @@ acceptBtn.on('click', function(){
 
   
   // FCB declarin this const that its work like a parameter
-  const theseWord = $('#inp-word').val().trim();
+  const theseWord = $('#inp-word').val().trim().toLowerCase();
   // FCB now the calls to the function have a parameter
   websterDictionary(theseWord);
   thesaurusW(theseWord);
