@@ -73,8 +73,7 @@ function websterDictionary(theWord){
           const translate = $("<p>").append(dat.shortdef.join("\n"));
           $('#modal-translation').append(translate);
           // This gets the example of the theWord
-          // const example = $("<p>").append(dat.def.sseq[0][0][1].dt[0][1].t);
-          // $('#modal-example').append(example);
+         
   }}})
     .catch(error => {
       console.error("There was a problem with the Dictionary operation", error)
