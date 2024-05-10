@@ -13,18 +13,43 @@ const tagButton = $('#listofTags');
 function meaningDict(theWord){
   // FCB the var theWord now is a parameter and the next line is not necesary 
   // const theWord = $('#inp-word').val().trim();
-  const url="https://api.dictionaryapi.dev/api/v2/entries/en/";
+  const user_id = '12544';
+  const token = 'eu3x0aXkEo6Upvjl'
+  const format = 'json';
+  const url = `https://www.stands4.com/services/v2/syno.php?uid=${user_id}&tokenid=${token}&word=${theWord}&format=${format}`;
   
-  fetch(`${url}${theWord}`)
-    .then(response => response.json())
-    .then(data =>{
-      const meaning = $("<p>").append(data[0].meanings[0].definitions[0].definition);
-      $("#modal-meaning").append(meaning);
-    })
-    .catch(error => {
-      console.error("There was a problem with the Meaning operation", error)
-    })};
-
+  
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    data.result.forEach(dat => {
+      const terms = dat.term.split(", ");
+      
+      if (terms.includes(theWord)){
+        if (dat.definition !== "" ){
+          //This const will get the definition of theWord
+          const definition = $('<p>').append(dat.definition);
+          $('#modal-meaning').append(definition);
+        } else {
+          const definition = $('<p>').append(`Couldn't find a definition for ${theWord}`);
+          $('#modal-meaning').append(definition);
+          
+        };
+        if (dat.example.length > 0){
+          //This const will get the example
+          const example = $('<p>').append(dat.example);
+          $('#modal-example').append(example);
+        } else {
+          const example = $('<p>').append(`Couldn't find an exampe for ${theWord}`);
+          $('#modal-example').append(example);
+        } 
+    }}
+  )})
+  .catch(error =>{
+    console.error("There was a problem with the Dictionary operation", error);
+    $('#modal-example').append("Error in directory try another word");
+  })
+  };
 
 // This function gets the word from the Webster Dictionary and returns the word in spanish
 function websterDictionary(theWord){
