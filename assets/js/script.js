@@ -13,7 +13,6 @@ const tagButton = $('#listofTags');
 function meaningDict(theWord){
   console.log(theWord);
   // FCB the var theWord now is a parameter and the next line is not necesary 
-  // const theWord = $('#inp-word').val().trim();
   const user_id = '12544';
   const token = 'eu3x0aXkEo6Upvjl'
   const format = 'json';
@@ -55,7 +54,6 @@ function meaningDict(theWord){
 // This function gets the word from the Webster Dictionary and returns the word in spanish
 function websterDictionary(theWord){
   // FCB the var theWord now is a parameter and the next line is not necesary 
-  // const theWord = $('#inp-word').val().trim();
   const spanishAPI = 'https://www.dictionaryapi.com/api/v3/references/spanish/json/';
   const keySpanish = '?key=a16e1bea-6077-4330-8322-a1574b70f085';
   const fetchBi = spanishAPI + theWord + keySpanish;
@@ -83,7 +81,6 @@ function websterDictionary(theWord){
   // This function gets the synonym and antonyms of the searched word
 function thesaurusW(theWord){
   // FCB the var theWord now is a parameter and the next line is not necesary 
-  // const theWord = $('#inp-word').val().trim();
   const thesAPI = 'https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/';
   const keyThesaurus = '?key=cb8330dc-8de9-452c-9c8e-ab72c53bd096';
   const thesaurus = thesAPI + theWord + keyThesaurus;
@@ -138,7 +135,7 @@ function renderTags() {
 // FCB handle localStorage function to store the searched words in the localstorage
 
 function handleLocalStorage() {
-  const theWord = $('#inp-word').val().trim();
+  const theWord = $('#inp-word').val().trim().toLowerCase();
   let lengthofArray = 0;
 
   // FCB load the localstorage (if not empty)
